@@ -23,5 +23,8 @@ Copy this repo to your machine and clone it in your terminal. Run "node server" 
 ## Contributing
 You can clone this repo here https://github.com/Nolan1979/Employee-Tracker
 
+## Walkthrough Video
+https://drive.google.com/file/d/1RRSKbgyrPPbix8NWJyNj1Gj_YHo7pI1Q/view
+
 ## Questions
 Having an issue? Email me with any questions about the app nolanjosh1979@gmil.com

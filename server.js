@@ -27,10 +27,9 @@ runIt = () => {
                 { name: 'View All Roles', value: 'VIEW_EMPLOYEES_BY_ROLE' },
                 { name: 'Add Employee', value: 'ADD_NEW_EMPLOYEE' },
                 { name: 'Add Role', value: 'ADD_NEW_ROLE' },
+                { name: 'Add Department', value: 'ADD_NEW_DEPARTMENT' },
 
                 // 'Update Employee Role',
-                
-                // 'Add Department'
             ]
         })
         .then(res => {
@@ -52,6 +51,9 @@ runIt = () => {
                 case 'ADD_NEW_ROLE':
                     addRole();
                     break;
+                case 'ADD_NEW_DEPARTMENT':
+                    addDepartment();
+                    break;
             }
 
         })
@@ -69,7 +71,6 @@ function viewEmployeesByDept() {
     connection.query('SELECT * FROM department', function (err, res) {
         console.table(res)
     })
-
 };
 
 function viewEmployeesByRole() {
@@ -103,7 +104,7 @@ function addEmployee() {
         }])
         .then(function (a) {
             const query = 'INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)'
-            connection.query(query, [a.firstName, a.lastName, 1,1], function (err, results) {
+            connection.query(query, [a.firstName, a.lastName, 1, 1], function (err, results) {
                 console.log(results); // results contains rows returned by server
             });
         });
@@ -136,26 +137,20 @@ function addRole() {
         });
 };
 
-
-
-
-
-
-
-
-
-
+function addDepartment() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: "What is new department name?",
+            name: 'departmentName',
+        }])
+        .then(function (c) {
+            const query = 'INSERT INTO department(name) VALUES (?)'
+            connection.query(query, [c.departmentName], function (err, results) {
+                console.log(results); // results contains rows returned by server
+            });
+        });
+};
 
 
 runIt();
-
-        // .then((data) => {
-
-
-
-
-
-
-
-        // });
-
